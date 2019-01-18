@@ -1,0 +1,27 @@
+# this doc contains the definition of my datamodel
+
+# btw, Prisma will auto-generate unique ID's
+
+# also anytime you adjust this file, you have to run 'Prisma Deploy'
+
+type Link {
+  id: ID! @unique # the @ symbol is a directive
+  createdAt: DateTime! # a date field managed by Prisma
+  description: String!
+  url: String!
+  postedBy: User
+}
+
+type User {
+  id: ID! @unique
+  name: String!
+  email: String! @unique
+  password: String!
+  links: [Link!]! # one-to-many
+}
+
+type Vote {
+  id: ID! @unique
+  link: Link!
+  user: User!
+}

@@ -1,0 +1,18 @@
+# this is the main config file for my prisma setup
+
+# The HTTP endpoint for my Prisma API
+#endpoint: ''
+endpoint: https://eu1.prisma.sh/mcrae-petrey-d26755/prisma/dev
+
+# this points to the file that contains my datamodel
+datamodel: datamodel.prisma
+
+# Specifies language & location for the generated Prisma client
+generate:
+  - generator: javascript-client
+    output: ../src/generated/prisma-client
+
+# this will get invoked every time I run prisma deploy
+hooks:
+  post-depoy:
+    - prisma generate
